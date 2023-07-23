@@ -53,22 +53,27 @@
 // echo implode("\n", $results) . "\n";
 
 // 練習3
-$number_elevator = trim(fgets(STDIN));
-$total_floors_to_move = 0;
-$prev_floors_to_move = 1; // 最初の入力は1階として扱う
+// $number_elevator = trim(fgets(STDIN));
+// $total_floors_to_move = 0;
+// $prev_floors_to_move = 1; // 最初の入力は1階として扱う
 
-for ($i = 1; $i <= $number_elevator; $i++) {
-    $floors_to_move = trim(fgets(STDIN));
+// for ($i = 1; $i <= $number_elevator; $i++) {
+//     $floors_to_move = trim(fgets(STDIN));
 
-    // 直前の入力との差を計算して合計に加算
-    $diff = abs($floors_to_move - $prev_floors_to_move);
-    $total_floors_to_move += $diff;
+//     // 直前の入力との差を計算して合計に加算
+//     $diff = abs($floors_to_move - $prev_floors_to_move);
+//     $total_floors_to_move += $diff;
 
-    // 直前の入力を更新
-    $prev_floors_to_move = $floors_to_move;
-}
+//     // 直前の入力を更新
+//     $prev_floors_to_move = $floors_to_move;
+// }
 
-echo $total_floors_to_move . "\n";
+// echo $total_floors_to_move . "\n";
 
+// 練習4
+$handle_name = trim(fgets(STDIN));
+$charactersToRemove = array('a', 'i', 'u', 'e', 'o', 'A', 'I', 'U', 'E', 'O');
+$result = str_replace($charactersToRemove, '', $handle_name);
+echo $result;
 
 ?>
