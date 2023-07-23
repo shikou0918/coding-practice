@@ -71,9 +71,32 @@
 // echo $total_floors_to_move . "\n";
 
 // 練習4
-$handle_name = trim(fgets(STDIN));
-$charactersToRemove = array('a', 'i', 'u', 'e', 'o', 'A', 'I', 'U', 'E', 'O');
-$result = str_replace($charactersToRemove, '', $handle_name);
-echo $result;
+// $handle_name = trim(fgets(STDIN));
+// $charactersToRemove = array('a', 'i', 'u', 'e', 'o', 'A', 'I', 'U', 'E', 'O');
+// $result = str_replace($charactersToRemove, '', $handle_name);
+// echo $result;
 
+// 練習5
+$input_line = trim(fgets(STDIN));
+list($charge_balance, $boarding_count) = explode(" ", $input_line);
+
+$results = [];
+$total_points = 0;
+
+for ($i = 1; $i <= $boarding_count; $i++) {
+    $fare = trim(fgets(STDIN));
+    $point = $fare * 0.1;
+
+    if ($fare <= $total_points) {
+      $total_points -= $fare;
+    } else {
+      $charge_balance -= $fare;
+      $total_points += $point;
+    }
+
+    $result = $charge_balance . ' ' . $total_points; // $charge_balance_resultと$point_resultを半角スペースで連結
+    $results[] = $result;
+}
+
+echo implode("\n", $results) . "\n";
 ?>
