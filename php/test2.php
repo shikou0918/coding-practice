@@ -19,36 +19,56 @@
 // echo $totalDistance;
 
 // 練習2
-$input_line = trim(fgets(STDIN));
-list($number_applicants, $present_a, $present_b) = explode(" ", $input_line);
+// $input_line = trim(fgets(STDIN));
+// list($number_applicants, $present_a, $present_b) = explode(" ", $input_line);
 
-// 結果を保存する配列を初期化
-$results = [];
+// // 結果を保存する配列を初期化
+// $results = [];
 
-for ($i = 1; $i <= $number_applicants; $i++) {
-    $output = '';
+// for ($i = 1; $i <= $number_applicants; $i++) {
+//     $output = '';
 
-    // Aの倍数かつBの倍数の場合は'AB'を追加
-    if ($i % $present_a === 0 && $i % $present_b === 0) {
-        $output .= 'AB';
-    }
-    // Aの倍数の場合は'A'を追加
-    elseif ($i % $present_a === 0) {
-        $output .= 'A';
-    }
-    // Bの倍数の場合は'B'を追加
-    elseif ($i % $present_b === 0) {
-        $output .= 'B';
-    }
-    // どちらにも当てはまらない場合は'N'を追加
-    else {
-        $output .= 'N';
-    }
+//     // Aの倍数かつBの倍数の場合は'AB'を追加
+//     if ($i % $present_a === 0 && $i % $present_b === 0) {
+//         $output .= 'AB';
+//     }
+//     // Aの倍数の場合は'A'を追加
+//     elseif ($i % $present_a === 0) {
+//         $output .= 'A';
+//     }
+//     // Bの倍数の場合は'B'を追加
+//     elseif ($i % $present_b === 0) {
+//         $output .= 'B';
+//     }
+//     // どちらにも当てはまらない場合は'N'を追加
+//     else {
+//         $output .= 'N';
+//     }
 
-    // 結果を配列に追加
-    $results[] = $output;
+//     // 結果を配列に追加
+//     $results[] = $output;
+// }
+
+// // 結果を改行区切りで出力
+// echo implode("\n", $results) . "\n";
+
+// 練習3
+$number_elevator = trim(fgets(STDIN));
+$total_floors_to_move = 0;
+$prev_floors_to_move = 1; // 最初の入力は1階として扱う
+
+for ($i = 1; $i <= $number_elevator; $i++) {
+    $floors_to_move = trim(fgets(STDIN));
+
+    // 直前の入力との差を計算して合計に加算
+    $diff = abs($floors_to_move - $prev_floors_to_move);
+    $total_floors_to_move += $diff;
+
+    // 直前の入力を更新
+    $prev_floors_to_move = $floors_to_move;
 }
 
-// 結果を改行区切りで出力
-echo implode("\n", $results) . "\n";
+echo $total_floors_to_move . "\n";
+
+
 ?>
