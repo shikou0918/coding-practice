@@ -145,24 +145,43 @@
 
 // echo $display_text . "\n";
 
-$users_number = trim(fgets(STDIN));
+// $users_number = trim(fgets(STDIN));
 
-$users = [];
-for ($i = 1; $i <= $users_number; $i++) {
-  $user_name = trim(fgets(STDIN));
-  $users[] = $user_name;
+// $users = [];
+// for ($i = 1; $i <= $users_number; $i++) {
+//   $user_name = trim(fgets(STDIN));
+//   $users[] = $user_name;
+// }
+
+// usort($users, "sortUsers");
+
+// function sortUsers($a, $b) {
+//   preg_match('/\d+$/', $a, $matches_a);
+//   preg_match('/\d+$/', $b, $matches_b);
+//   $number_a = isset($matches_a[0]) ? (int)$matches_a[0] : 0;
+//   $number_b = isset($matches_b[0]) ? (int)$matches_b[0] : 0;
+//   echo "A:" . $number_a . "\n";
+//   echo "B:" . $number_b . "\n";
+
+//   return $number_a - $number_b;
+// }
+
+// echo implode("\n", $users) . "\n";
+
+$input_line = trim(fgets(STDIN));
+list($students_number, $passing_score) = explode(" ", $input_line);
+$results = [];
+
+for ($i = 1; $i <= $students_number; $i++) {
+  $input_line = trim(fgets(STDIN));
+  list($score, $absences) = explode(" ", $input_line);
+  $result = max($score - $absences * 5, 0);
+  if ($passing_score <= $result) {
+    $results[] = $i;
+  }
 }
 
-usort($users, "sortUsers");
+sort($results);
 
-function sortUsers($a, $b) {
-  preg_match('/\d+$/', $a, $matches_a);
-  preg_match('/\d+$/', $b, $matches_b);
-  $number_a = isset($matches_a[0]) ? (int)$matches_a[0] : 0;
-  $number_b = isset($matches_b[0]) ? (int)$matches_b[0] : 0;
-
-  return $number_a - $number_b;
-}
-
-echo implode("\n", $users) . "\n";
+echo implode("\n", $results) . "\n";
 ?>
