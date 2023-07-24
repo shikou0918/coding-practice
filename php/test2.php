@@ -152,4 +152,63 @@
 
 // echo $total_point;
 
+// 練習8
+// $input_line = trim(fgets(STDIN));
+// $cards = explode(" ", $input_line);
+
+// $max_score = 0;
+
+// // カードの4枚のすべての並べ方を試す
+// for ($i = 0; $i < 4; $i++) {
+//     for ($j = 0; $j < 4; $j++) {
+//         if ($j == $i) continue; // 同じカードを2回選ぶことはないのでスキップ
+//         for ($k = 0; $k < 4; $k++) {
+//             if ($k == $i || $k == $j) continue; // 同じカードを2回選ぶことはないのでスキップ
+//             $l = 6 - $i - $j - $k; // 残りのカードを計算
+//             $left_number = $cards[$i] * 10 + $cards[$j]; // 左側の2枚のカードの数値を計算
+//             $right_number = $cards[$k] * 10 + $cards[$l]; // 右側の2枚のカードの数値を計算
+//             $score = $left_number + $right_number; // 和を計算
+//             $max_score = max($max_score, $score); // 最大スコアを更新
+//         }
+//     }
+// }
+
+// echo $max_score . "\n";
+
+// 練習9
+
+
+function checkHand($cards) {
+  $frequency = array_count_values($cards); // 各数字の出現回数を数える
+
+  // 出現回数の最大値によって役を判定する
+  $maxFrequency = max($frequency);
+  $uniqueCount = count($frequency);
+
+  if ($maxFrequency === 4) {
+      return "Four Card"; // 同じ数字が4枚ある場合
+  } elseif ($maxFrequency === 3) {
+      return "Three Card"; // 同じ数字が3枚ある場合
+  } elseif ($maxFrequency === 2 && $uniqueCount === 2) {
+      return "Two Pair"; // 同じ数字のペアが2つある場合
+  } elseif ($maxFrequency === 2 && $uniqueCount === 3) {
+      return "One Pair"; // 同じ数字のペアが1つある場合
+  } else {
+      return "No Pair"; // 上記以外の場合
+  }
+}
+
+// テストケースの入力データ（手札の4つの数字が配列で与えられる）
+$hands_number = trim(fgets(STDIN));
+
+for ($i = 1; $i <= $hands_number; $i++) {
+  $combination = trim(fgets(STDIN));
+  $cards = str_split($combination);
+  echo checkHand($cards) . "\n";
+}
+
+
+
+
 ?>
+

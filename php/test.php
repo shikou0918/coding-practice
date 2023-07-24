@@ -168,20 +168,21 @@
 
 // echo implode("\n", $users) . "\n";
 
-$input_line = trim(fgets(STDIN));
-list($students_number, $passing_score) = explode(" ", $input_line);
-$results = [];
+// 練習7
+// $input_line = trim(fgets(STDIN));
+// list($students_number, $passing_score) = explode(" ", $input_line);
+// $results = [];
 
-for ($i = 1; $i <= $students_number; $i++) {
-  $input_line = trim(fgets(STDIN));
-  list($score, $absences) = explode(" ", $input_line);
-  $result = max($score - $absences * 5, 0);
-  if ($passing_score <= $result) {
-    $results[] = $i;
-  }
-}
+// for ($i = 1; $i <= $students_number; $i++) {
+//   $input_line = trim(fgets(STDIN));
+//   list($score, $absences) = explode(" ", $input_line);
+//   $result = max($score - $absences * 5, 0);
+//   if ($passing_score <= $result) {
+//     $results[] = $i;
+//   }
+// }
 
-sort($results);
+// sort($results);
 
-echo implode("\n", $results) . "\n";
+// echo implode("\n", $results) . "\n";
 ?>
