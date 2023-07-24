@@ -77,26 +77,58 @@
 // echo $result;
 
 // 練習5
+// $input_line = trim(fgets(STDIN));
+// list($charge_balance, $boarding_count) = explode(" ", $input_line);
+
+// $results = [];
+// $total_points = 0;
+
+// for ($i = 1; $i <= $boarding_count; $i++) {
+//     $fare = trim(fgets(STDIN));
+//     $point = $fare * 0.1;
+
+//     if ($fare <= $total_points) {
+//       $total_points -= $fare;
+//     } else {
+//       $charge_balance -= $fare;
+//       $total_points += $point;
+//     }
+
+//     $result = $charge_balance . ' ' . $total_points; // $charge_balance_resultと$point_resultを半角スペースで連結
+//     $results[] = $result;
+// }
+
+// echo implode("\n", $results) . "\n";
+
 $input_line = trim(fgets(STDIN));
-list($charge_balance, $boarding_count) = explode(" ", $input_line);
+$results = []; // 結果を格納するための配列
 
-$results = [];
-$total_points = 0;
+for ($i = 1; $i <= $input_line; $i++) {
+    $number = trim(fgets(STDIN));
+    $number  = intval($number);
+    $total = 0; // 各数の約数の和を計算するための変数
 
-for ($i = 1; $i <= $boarding_count; $i++) {
-    $fare = trim(fgets(STDIN));
-    $point = $fare * 0.1;
-
-    if ($fare <= $total_points) {
-      $total_points -= $fare;
-    } else {
-      $charge_balance -= $fare;
-      $total_points += $point;
+    for ($j = 1; $j < $number; $j++) {
+        if ($number % $j === 0) {
+            // $j は $number の約数なので、その値を約数の和に加算する
+            $total += $j;
+        }
     }
 
-    $result = $charge_balance . ' ' . $total_points; // $charge_balance_resultと$point_resultを半角スペースで連結
-    $results[] = $result;
+    if ($number === $total) {
+        $output = 'perfect';
+    } elseif ($number -1 === $total) {
+        $output = 'nearly';
+    } else {
+        $output = 'neither';
+    }
+
+    // 結果を配列に追加
+    $results[] = $output;
 }
 
+// 結果を表示
 echo implode("\n", $results) . "\n";
+
+
 ?>
