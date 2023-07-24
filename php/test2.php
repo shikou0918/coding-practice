@@ -100,35 +100,56 @@
 
 // echo implode("\n", $results) . "\n";
 
-$input_line = trim(fgets(STDIN));
-$results = []; // 結果を格納するための配列
+// 練習6
+// $input_line = trim(fgets(STDIN));
+// $results = []; // 結果を格納するための配列
 
-for ($i = 1; $i <= $input_line; $i++) {
-    $number = trim(fgets(STDIN));
-    $number  = intval($number);
-    $total = 0; // 各数の約数の和を計算するための変数
+// for ($i = 1; $i <= $input_line; $i++) {
+//     $number = trim(fgets(STDIN));
+//     $number  = intval($number);
+//     $total = 0; // 各数の約数の和を計算するための変数
 
-    for ($j = 1; $j < $number; $j++) {
-        if ($number % $j === 0) {
-            // $j は $number の約数なので、その値を約数の和に加算する
-            $total += $j;
-        }
-    }
+//     for ($j = 1; $j < $number; $j++) {
+//         if ($number % $j === 0) {
+//             // $j は $number の約数なので、その値を約数の和に加算する
+//             $total += $j;
+//         }
+//     }
 
-    if ($number === $total) {
-        $output = 'perfect';
-    } elseif ($number -1 === $total) {
-        $output = 'nearly';
+//     if ($number === $total) {
+//         $output = 'perfect';
+//     } elseif ($number -1 === $total) {
+//         $output = 'nearly';
+//     } else {
+//         $output = 'neither';
+//     }
+
+//     // 結果を配列に追加
+//     $results[] = $output;
+// }
+
+// // 結果を表示
+// echo implode("\n", $results) . "\n";
+
+// 練習7
+$receipt_number = trim(fgets(STDIN));
+
+for ($i = 1; $i <= $receipt_number; $i++) {
+    $input_line = trim(fgets(STDIN));
+    list($date, $purchase_amount) = explode(" ", $input_line);
+
+    // 与えられた日付が「3」「13」「23」「30」「31」のいずれかであればポイントを3%にする
+    if (in_array(substr($date, -2), ['03', '13', '23', '30', '31'])) {
+        $point = floor($purchase_amount * 0.03); // 3%のポイント
+    } elseif (in_array(substr($date, -2), ['05', '15', '25'])) {
+      $point = floor($purchase_amount * 0.05); // 3%のポイント
     } else {
-        $output = 'neither';
+        $point = floor($purchase_amount * 0.01); // 通常の1%のポイント
     }
 
-    // 結果を配列に追加
-    $results[] = $output;
+    $total_point += $point;
 }
 
-// 結果を表示
-echo implode("\n", $results) . "\n";
-
+echo $total_point;
 
 ?>
