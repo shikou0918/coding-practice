@@ -132,24 +132,24 @@
 // echo implode("\n", $results) . "\n";
 
 // 練習7
-$receipt_number = trim(fgets(STDIN));
+// $receipt_number = trim(fgets(STDIN));
 
-for ($i = 1; $i <= $receipt_number; $i++) {
-    $input_line = trim(fgets(STDIN));
-    list($date, $purchase_amount) = explode(" ", $input_line);
+// for ($i = 1; $i <= $receipt_number; $i++) {
+//     $input_line = trim(fgets(STDIN));
+//     list($date, $purchase_amount) = explode(" ", $input_line);
 
-    // 与えられた日付が「3」「13」「23」「30」「31」のいずれかであればポイントを3%にする
-    if (in_array(substr($date, -2), ['03', '13', '23', '30', '31'])) {
-        $point = floor($purchase_amount * 0.03); // 3%のポイント
-    } elseif (in_array(substr($date, -2), ['05', '15', '25'])) {
-      $point = floor($purchase_amount * 0.05); // 3%のポイント
-    } else {
-        $point = floor($purchase_amount * 0.01); // 通常の1%のポイント
-    }
+//     // 与えられた日付が「3」「13」「23」「30」「31」のいずれかであればポイントを3%にする
+//     if (in_array(substr($date, -2), ['03', '13', '23', '30', '31'])) {
+//         $point = floor($purchase_amount * 0.03); // 3%のポイント
+//     } elseif (in_array(substr($date, -2), ['05', '15', '25'])) {
+//       $point = floor($purchase_amount * 0.05); // 3%のポイント
+//     } else {
+//         $point = floor($purchase_amount * 0.01); // 通常の1%のポイント
+//     }
 
-    $total_point += $point;
-}
+//     $total_point += $point;
+// }
 
-echo $total_point;
+// echo $total_point;
 
 ?>

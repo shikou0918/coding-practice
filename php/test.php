@@ -129,4 +129,40 @@
 //   $meter= fgets(STDIN);
 //   runningDistance($meter);
 
+// 練習6
+
+// $key_durability = explode(" ", trim(fgets(STDIN)));
+// $input_text = trim(fgets(STDIN));
+
+// $display_text = '';
+// foreach (str_split($input_text) as $char) {
+//     $key = ord(strtolower($char)) - ord('a');
+//     if ($key_durability[$key] > 0) {
+//         $display_text .= $char;
+//         $key_durability[$key]--;
+//     }
+// }
+
+// echo $display_text . "\n";
+
+$users_number = trim(fgets(STDIN));
+
+$users = [];
+for ($i = 1; $i <= $users_number; $i++) {
+  $user_name = trim(fgets(STDIN));
+  $users[] = $user_name;
+}
+
+usort($users, "sortUsers");
+
+function sortUsers($a, $b) {
+  preg_match('/\d+$/', $a, $matches_a);
+  preg_match('/\d+$/', $b, $matches_b);
+  $number_a = isset($matches_a[0]) ? (int)$matches_a[0] : 0;
+  $number_b = isset($matches_b[0]) ? (int)$matches_b[0] : 0;
+
+  return $number_a - $number_b;
+}
+
+echo implode("\n", $users) . "\n";
 ?>
