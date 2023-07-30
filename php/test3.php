@@ -76,8 +76,39 @@ for ($i = 0; $i < $num_words - 1; $i++) {
 if ($all_match) {
   echo "Yes" . PHP_EOL;
 } else {
-  echo $current_last_char . " " . $next_first_char . PHP_EOL; 
+  echo $current_last_char . " " . $next_first_char . PHP_EOL;
+}
+
+// 練習4
+$log_count = trim(fgets(STDIN));
+$extraction_target = trim(fgets(STDIN));
+
+$logs = [];
+for ($i = 1; $i <= $log_count; $i++) {
+    $logs[] = trim(fgets(STDIN));
+}
+
+function filter($logs, $target) {
+    $matchingWords = [];
+
+    foreach ($logs as $log) {
+        if (strpos($log, $target) !== false) {
+            $matchingWords[] = $log;
+        }
+    }
+
+    return $matchingWords;
+}
+
+$matchingWords = filter($logs, $extraction_target);
+
+if (count($matchingWords) > 0) {
+    foreach ($matchingWords as $word) {
+        echo $word . "\n";
+    }
+} else {
+    echo "None";
 }
 
 
-
+?>
