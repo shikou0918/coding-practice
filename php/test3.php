@@ -111,17 +111,37 @@
 // }
 
 // 練習5
-$input_line = trim(fgets(STDIN));
-list($food, $p, $q) = explode(" ", $input_line);
+// $input_line = trim(fgets(STDIN));
+// list($food, $p, $q) = explode(" ", $input_line);
 
-$p = $p / 100;
-$q = $q / 100;
+// $p = $p / 100;
+// $q = $q / 100;
 
-$processing_unsold_food  = $food * (1 - $p);
-$unsold_food = $processing_unsold_food * (1 - $q);
+// $processing_unsold_food  = $food * (1 - $p);
+// $unsold_food = $processing_unsold_food * (1 - $q);
 
-echo $unsold_food;
+// echo $unsold_food;
 
+// 練習6
+$disliked_numbers = trim(fgets(STDIN));
+$hospital_room = trim(fgets(STDIN));
 
+$hospital_numbers = [];
+for ($i = 0; $i < $hospital_room; $i++) {
+  $hospital_numbers[] = trim(fgets(STDIN));
+}
+
+$results = [];
+foreach ($hospital_numbers as $number) {
+  if ($number !== $disliked_numbers && strpos((string)$number, $disliked_numbers) === false) {
+      $results[] = $number;
+  }
+}
+
+if ($results) {
+  echo implode("\n", $results) . "\n";
+} else {
+  echo 'none';
+}
 
 ?>
