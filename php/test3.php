@@ -123,25 +123,48 @@
 // echo $unsold_food;
 
 // 練習6
-$disliked_numbers = trim(fgets(STDIN));
-$hospital_room = trim(fgets(STDIN));
+// $disliked_numbers = trim(fgets(STDIN));
+// $hospital_room = trim(fgets(STDIN));
 
-$hospital_numbers = [];
-for ($i = 0; $i < $hospital_room; $i++) {
-  $hospital_numbers[] = trim(fgets(STDIN));
+// $hospital_numbers = [];
+// for ($i = 0; $i < $hospital_room; $i++) {
+//   $hospital_numbers[] = trim(fgets(STDIN));
+// }
+
+// $results = [];
+// foreach ($hospital_numbers as $number) {
+//   if ($number !== $disliked_numbers && strpos((string)$number, $disliked_numbers) === false) {
+//       $results[] = $number;
+//   }
+// }
+
+// if ($results) {
+//   echo implode("\n", $results) . "\n";
+// } else {
+//   echo 'none';
+// }
+
+$input_line = trim(fgets(STDIN));
+$characters = str_split($input_line); // 文字列を1文字ずつ配列に分割
+
+$numbers = [];
+
+foreach ($characters as $character) {
+    if ($character === '/') {
+        $numbers[] = 1;
+    } elseif ($character === '<') {
+        $numbers[] = 10;
+    }
 }
 
-$results = [];
-foreach ($hospital_numbers as $number) {
-  if ($number !== $disliked_numbers && strpos((string)$number, $disliked_numbers) === false) {
-      $results[] = $number;
-  }
-}
+$sum = array_sum($numbers); // 配列の値を合計する
 
-if ($results) {
-  echo implode("\n", $results) . "\n";
-} else {
-  echo 'none';
-}
+echo $sum . "\n";
+
+
+
+
+
+
 
 ?>
