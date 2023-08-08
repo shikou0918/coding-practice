@@ -144,6 +144,7 @@
 //   echo 'none';
 // }
 
+// 練習7
 $input_line = trim(fgets(STDIN));
 $characters = str_split($input_line); // 文字列を1文字ずつ配列に分割
 
@@ -160,11 +161,4 @@ foreach ($characters as $character) {
 $sum = array_sum($numbers); // 配列の値を合計する
 
 echo $sum . "\n";
-
-
-
-
-
-
-
 ?>
