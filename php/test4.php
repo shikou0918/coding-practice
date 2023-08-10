@@ -40,14 +40,9 @@ for ($i = 0; $i < $store; $i++) {
   $ramen_sales[] = trim(fgets(STDIN));
 }
 
-$net_profits = [];
-
-foreach ($ramen_sales as $sales) {
-  $net_profits[] = $profit * $sales - $construction_costs - $labor_costs * $business_period;
-}
-
 $negative_profit_count = 0;
-foreach ($net_profits as $net_profit) {
+foreach ($ramen_sales as $sales) {
+  $net_profit = $profit * $sales - $construction_costs - $labor_costs * $business_period;
   if ($net_profit < 0) {
     $negative_profit_count++;
   }
