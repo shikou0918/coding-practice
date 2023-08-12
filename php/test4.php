@@ -69,5 +69,24 @@ $sum = array_sum($matchingValues);
 
 echo $sum * 2;
 
+// 練習5
+$input_line = trim(fgets(STDIN));
+list($first, $second) = explode(" ", $input_line);
+$n = trim(fgets(STDIN));
+
+for ($i = 0; $i < $n; $i++) {
+  $input_line2 = trim(fgets(STDIN));
+  list($a_first[], $b_second[]) = explode(" ", $input_line2);
+}
+
+foreach ($a_first as $a) {
+  if ($a < $first || $a == $first && $second < $b) {
+    echo "High" . "\n"
+  } else {
+    echo "Low"
+  }
+}
+// print_r($a_first);
+
 
 ?>

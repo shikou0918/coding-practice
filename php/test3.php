@@ -146,19 +146,21 @@
 
 // 練習7
 $input_line = trim(fgets(STDIN));
-$characters = str_split($input_line); // 文字列を1文字ずつ配列に分割
+list($first, $second) = explode(" ", $input_line);
+$n = trim(fgets(STDIN));
 
-$numbers = [];
-
-foreach ($characters as $character) {
-    if ($character === '/') {
-        $numbers[] = 1;
-    } elseif ($character === '<') {
-        $numbers[] = 10;
-    }
+for ($i = 0; $i < $n; $i++) {
+  $input_line2 = trim(fgets(STDIN));
+  list($a_first[], $b_second[]) = explode(" ", $input_line2);
 }
 
-$sum = array_sum($numbers); // 配列の値を合計する
+foreach ($a_first as $index => $a) {
+  $b = $b_second[$index];
+  if ($a < $first || $a == $first && $second < $b) {
+    echo "High". "\n";
+  } else {
+    echo "Low". "\n";
+  }
+}
 
-echo $sum . "\n";
 ?>
