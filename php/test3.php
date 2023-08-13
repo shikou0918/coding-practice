@@ -183,4 +183,15 @@ $word_pages = array_chunk($words, $page_words, true);
 foreach ($word_pages[$number_pages - 1] as $value) {
     echo $value . "\n";
 }
+
+ini_set("memory_limit", -1);
+
+function main($lines) {
+  foreach ($lines as $index=>$value) {
+    printf("line[%s]: %s\n", $index, $value);
+  }
+}
+
 ?>
+
+

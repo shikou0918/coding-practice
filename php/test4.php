@@ -70,23 +70,51 @@ $sum = array_sum($matchingValues);
 echo $sum * 2;
 
 // 練習5
-$input_line = trim(fgets(STDIN));
-list($first, $second) = explode(" ", $input_line);
-$n = trim(fgets(STDIN));
+// $input_line = trim(fgets(STDIN));
+// list($first, $second) = explode(" ", $input_line);
+// $n = trim(fgets(STDIN));
 
-for ($i = 0; $i < $n; $i++) {
-  $input_line2 = trim(fgets(STDIN));
-  list($a_first[], $b_second[]) = explode(" ", $input_line2);
-}
+// for ($i = 0; $i < $n; $i++) {
+//   $input_line2 = trim(fgets(STDIN));
+//   list($a_first[], $b_second[]) = explode(" ", $input_line2);
+// }
 
-foreach ($a_first as $a) {
-  if ($a < $first || $a == $first && $second < $b) {
-    echo "High" . "\n"
-  } else {
-    echo "Low"
-  }
-}
+// foreach ($a_first as $a) {
+//   if ($a < $first || $a == $first && $second < $b) {
+//     echo "High" . "\n"
+//   } else {
+//     echo "Low"
+//   }
+// }
 // print_r($a_first);
 
+// 練習5
+$input_line = trim(fgets(STDIN));
+list($days, $buy, $sell) = explode(" ", $input_line);
+
+$stock_prices = [];
+for ($i = 0; $i < $days; $i++) {
+    $stock_prices[] = trim(fgets(STDIN));
+}
+
+// 持ち株
+$total_stock = 0;
+
+// 利益
+$profit = 0;
+foreach ($stock_prices as $stock_price) {
+    if ($stock_price <= $buy) {
+        $total_stock++;
+        $profit -= $stock_price; // 買いの場合、損益を減算
+    } elseif ($stock_price >= $sell) {
+        $profit += $stock_price * $total_stock; // 売りの場合、損益を加算
+        $total_stock = 0;
+    }
+}
+
+// N 日目には持ち株を売る
+$profit += $stock_price * $total_stock;
+
+echo $profit;
 
 ?>
