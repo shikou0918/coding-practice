@@ -145,22 +145,42 @@
 // }
 
 // 練習7
+// $input_line = trim(fgets(STDIN));
+// list($first, $second) = explode(" ", $input_line);
+// $n = trim(fgets(STDIN));
+
+// for ($i = 0; $i < $n; $i++) {
+//   $input_line2 = trim(fgets(STDIN));
+//   list($a_first[], $b_second[]) = explode(" ", $input_line2);
+// }
+
+// foreach ($a_first as $index => $a) {
+//   $b = $b_second[$index];
+//   if ($a < $first || $a == $first && $second < $b) {
+//     echo "High". "\n";
+//   } else {
+//     echo "Low". "\n";
+//   }
+// }
+
+// 練習７
 $input_line = trim(fgets(STDIN));
-list($first, $second) = explode(" ", $input_line);
-$n = trim(fgets(STDIN));
+list($total_words, $page_words, $number_pages) = explode(" ", $input_line);
 
-for ($i = 0; $i < $n; $i++) {
-  $input_line2 = trim(fgets(STDIN));
-  list($a_first[], $b_second[]) = explode(" ", $input_line2);
+$input_line2 = trim(fgets(STDIN));
+$words = explode(" ", $input_line2);
+sort($words);
+
+if (count($words) != $total_words) {
+    echo "入力数が正しくありません。\n";
+    exit;
 }
 
-foreach ($a_first as $index => $a) {
-  $b = $b_second[$index];
-  if ($a < $first || $a == $first && $second < $b) {
-    echo "High". "\n";
-  } else {
-    echo "Low". "\n";
-  }
-}
+// $page_words ごとに余った単語も含めて配列を分割
+$word_pages = array_chunk($words, $page_words, true);
 
+
+foreach ($word_pages[$number_pages - 1] as $value) {
+    echo $value . "\n";
+}
 ?>
