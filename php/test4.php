@@ -147,6 +147,4 @@ $minTimeBuses = array_column($closestBusesWithMinDiff, 1);
 foreach ($minTimeBuses as $minTimeBus) {
   echo $minTimeBus . "\n";
 }
-
-
 ?>
