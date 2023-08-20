@@ -61,4 +61,26 @@ for ($i = 0; $i < $passes; $i++) {
 foreach ($balls as $ball) {
     echo $ball . "\n";
 }
+
+// 練習3
+<?php
+// 当選番号を取得
+$winningNumbers = array_map('intval', explode(' ', trim(fgets(STDIN))));
+
+// 購入枚数 N を取得
+$N = intval(trim(fgets(STDIN)));
+
+// 各くじについて処理
+for ($i = 0; $i < $N; $i++) {
+    // くじの数字を取得
+    $ticketNumbers = array_map('intval', explode(' ', trim(fgets(STDIN))));
+
+    // 当選した数字の数をカウント
+    $matchCount = count(array_intersect($winningNumbers, $ticketNumbers));
+
+    // 結果を出力
+    echo $matchCount . "\n";
+}
+?>
+
 ?>
