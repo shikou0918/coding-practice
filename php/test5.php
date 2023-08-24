@@ -84,19 +84,23 @@
 // 練習4
 $input_line = trim(fgets(STDIN));
 list($x, $y) = explode(" ", $input_line);
-$bob = array_map('intval', str_split($x));
-$alice = array_map('intval', str_split($y));
-$bob_score = array_sum($bob);
-$alice_score = array_sum($alice);
 
-$bob_ones_digit = $bob_score % 10;
-$alice_ones_digit = $alice_score % 10;
+function calculateOnesDigit($score) {
+    // 文字列に分割した数字を一括で整数に変換し、それらの合計の一の位を求める
+    return array_sum(array_map('intval', str_split($score))) % 10;
+}
+
+$bob_ones_digit = calculateOnesDigit($x);
+$alice_ones_digit = calculateOnesDigit($y);
 
 if ($bob_ones_digit > $alice_ones_digit) {
-    return "Bob";
+    $result = "Bob";
 } elseif ($bob_ones_digit < $alice_ones_digit) {
-    return "Alice";
+    $result = "Alice";
 } else {
-    return "Draw";
+    $result = "Draw";
 }
+
+echo $result;
+
 ?>
