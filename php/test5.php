@@ -82,5 +82,3 @@ for ($i = 0; $i < $N; $i++) {
     echo $matchCount . "\n";
 }
 ?>
-
-?>
