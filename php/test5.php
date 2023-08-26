@@ -82,25 +82,53 @@
 // }
 
 // 練習4
-$input_line = trim(fgets(STDIN));
-list($x, $y) = explode(" ", $input_line);
+// $input_line = trim(fgets(STDIN));
+// list($x, $y) = explode(" ", $input_line);
 
-function calculateOnesDigit($score) {
-    // 文字列に分割した数字を一括で整数に変換し、それらの合計の一の位を求める
-    return array_sum(array_map('intval', str_split($score))) % 10;
+// function calculateOnesDigit($score) {
+//     // 文字列に分割した数字を一括で整数に変換し、それらの合計の一の位を求める
+//     return array_sum(array_map('intval', str_split($score))) % 10;
+// }
+
+// $bob_ones_digit = calculateOnesDigit($x);
+// $alice_ones_digit = calculateOnesDigit($y);
+
+// if ($bob_ones_digit > $alice_ones_digit) {
+//     $result = "Bob";
+// } elseif ($bob_ones_digit < $alice_ones_digit) {
+//     $result = "Alice";
+// } else {
+//     $result = "Draw";
+// }
+
+// echo $result;
+
+// 練習4
+$days = trim(fgets(STDIN));
+
+$stock_price = [];
+for ($i = 0; $i < $days; $i++) {
+  $stock_price[] = array_map('intval', explode(' ', trim(fgets(STDIN))));
 }
 
-$bob_ones_digit = calculateOnesDigit($x);
-$alice_ones_digit = calculateOnesDigit($y);
+$open = $stock_price[0][0];
+$close = $stock_price[$days - 1][1]; // 最後の日の終値を使用
 
-if ($bob_ones_digit > $alice_ones_digit) {
-    $result = "Bob";
-} elseif ($bob_ones_digit < $alice_ones_digit) {
-    $result = "Alice";
-} else {
-    $result = "Draw";
+$max_high = $stock_price[0][2]; // 最初の日の高値を初期値として設定
+$min_low = $stock_price[0][3];  // 最初の日の安値を初期値として設定
+
+// 最高価格と最低価格を更新
+for ($i = 0; $i < $days; $i++) {
+    if ($stock_price[$i][2] > $max_high) {
+        $max_high = $stock_price[$i][2];
+    }
+    if ($stock_price[$i][3] < $min_low) {
+        $min_low = $stock_price[$i][3];
+    }
 }
 
-echo $result;
+echo "$open $close $max_high $min_low\n";
+print_r($stock_price);
+
 
 ?>
