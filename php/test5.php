@@ -104,31 +104,62 @@
 // echo $result;
 
 // 練習4
-$days = trim(fgets(STDIN));
+// $days = trim(fgets(STDIN));
 
-$stock_price = [];
-for ($i = 0; $i < $days; $i++) {
-  $stock_price[] = array_map('intval', explode(' ', trim(fgets(STDIN))));
+// $stock_price = [];
+// for ($i = 0; $i < $days; $i++) {
+//   $stock_price[] = array_map('intval', explode(' ', trim(fgets(STDIN))));
+// }
+
+// $open = $stock_price[0][0];
+// $close = $stock_price[$days - 1][1]; // 最後の日の終値を使用
+
+// $max_high = $stock_price[0][2]; // 最初の日の高値を初期値として設定
+// $min_low = $stock_price[0][3];  // 最初の日の安値を初期値として設定
+
+// // 最高価格と最低価格を更新
+// for ($i = 0; $i < $days; $i++) {
+//     if ($stock_price[$i][2] > $max_high) {
+//         $max_high = $stock_price[$i][2];
+//     }
+//     if ($stock_price[$i][3] < $min_low) {
+//         $min_low = $stock_price[$i][3];
+//     }
+// }
+
+// echo "$open $close $max_high $min_low\n";
+// print_r($stock_price);
+
+// 練習5(108)
+$N = intval(trim(fgets(STDIN))); // 観光名所の数
+
+$stay_time = [];
+for ($i = 0; $i < $N; $i++) {
+    $stay_time[] = intval(trim(fgets(STDIN))); // 各観光名所の滞在時間
 }
 
-$open = $stock_price[0][0];
-$close = $stock_price[$days - 1][1]; // 最後の日の終値を使用
-
-$max_high = $stock_price[0][2]; // 最初の日の高値を初期値として設定
-$min_low = $stock_price[0][3];  // 最初の日の安値を初期値として設定
-
-// 最高価格と最低価格を更新
-for ($i = 0; $i < $days; $i++) {
-    if ($stock_price[$i][2] > $max_high) {
-        $max_high = $stock_price[$i][2];
-    }
-    if ($stock_price[$i][3] < $min_low) {
-        $min_low = $stock_price[$i][3];
-    }
+$travel_time = [];
+for ($i = 0; $i < $N; $i++) {
+    $travel_time[] = array_map('intval', explode(' ', trim(fgets(STDIN)))); // 移動時間
 }
 
-echo "$open $close $max_high $min_low\n";
-print_r($stock_price);
+$K = intval(trim(fgets(STDIN))); // 訪れたい観光名所の数
 
+$want_visit_numbers = [];
+for ($i = 0; $i < $K; $i++) {
+    $want_visit_numbers[] = intval(trim(fgets(STDIN))); // 訪れたい観光名所
+}
 
+$total_time = 0;
+$current_location = 0; // 初めての観光名所
+foreach ($want_visit_numbers as $want_visit_number) {
+    // 移動時間と滞在時間を加算
+    $total_time += $travel_time[$current_location][$want_visit_number - 1];
+    $total_time += $stay_time[$want_visit_number - 1];
+
+    // 現在の場所を更新
+    $current_location = $want_visit_number - 1;
+}
+
+echo $total_time . "\n"; // 総所要時間を出力
 ?>
