@@ -130,36 +130,41 @@
 // echo "$open $close $max_high $min_low\n";
 // print_r($stock_price);
 
-// 練習5(108)
-$N = intval(trim(fgets(STDIN))); // 観光名所の数
+// 練習5
+// 観光場所数
+$places = intval(trim(fgets(STDIN)));
 
+// 各観光地の滞在時間
 $stay_time = [];
-for ($i = 0; $i < $N; $i++) {
-    $stay_time[] = intval(trim(fgets(STDIN))); // 各観光名所の滞在時間
+for ($i = 0; $i < $places; $i++) {
+  $stay_time[] = intval(trim(fgets(STDIN)));
 }
 
+// 移動時間
 $travel_time = [];
-for ($i = 0; $i < $N; $i++) {
-    $travel_time[] = array_map('intval', explode(' ', trim(fgets(STDIN)))); // 移動時間
+for ($i = 0; $i < $places; $i++) {
+  $travel_time[] = array_map('intval', explode(' ', trim(fgets(STDIN))));
 }
 
-$K = intval(trim(fgets(STDIN))); // 訪れたい観光名所の数
+// 訪れたい観光各所
+$want_visit = intval(trim(fgets(STDIN)));
 
 $want_visit_numbers = [];
-for ($i = 0; $i < $K; $i++) {
-    $want_visit_numbers[] = intval(trim(fgets(STDIN))); // 訪れたい観光名所
+for ($i = 0; $i < $want_visit; $i++) {
+  $want_visit_numbers[] = intval(trim(fgets(STDIN)));
 }
 
 $total_time = 0;
-$current_location = 0; // 初めての観光名所
+$current_location = $want_visit[0]; // 初めての観光名所
 foreach ($want_visit_numbers as $want_visit_number) {
-    // 移動時間と滞在時間を加算
+    // 移動時間の合計
     $total_time += $travel_time[$current_location][$want_visit_number - 1];
+    // 滞在時間の合計
     $total_time += $stay_time[$want_visit_number - 1];
 
     // 現在の場所を更新
     $current_location = $want_visit_number - 1;
 }
 
-echo $total_time . "\n"; // 総所要時間を出力
+echo $total_time . "\n";
 ?>
