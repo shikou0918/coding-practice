@@ -155,15 +155,15 @@ for ($i = 0; $i < $want_visit; $i++) {
 }
 
 $total_time = 0;
-$current_location = $want_visit[0]; // 初めての観光名所
+$current_location = $want_visit_numbers[0]; // 初めての観光名所
+
 foreach ($want_visit_numbers as $want_visit_number) {
     // 移動時間の合計
-    $total_time += $travel_time[$current_location][$want_visit_number - 1];
+    $total_time += $travel_time[$current_location -1][$want_visit_number -1];
     // 滞在時間の合計
-    $total_time += $stay_time[$want_visit_number - 1];
-
+    $total_time += $stay_time[$want_visit_number -1];
     // 現在の場所を更新
-    $current_location = $want_visit_number - 1;
+    $current_location = $want_visit_number;
 }
 
 echo $total_time . "\n";
