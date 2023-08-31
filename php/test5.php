@@ -131,40 +131,64 @@
 // print_r($stock_price);
 
 // 練習5
-// 観光場所数
-$places = intval(trim(fgets(STDIN)));
+// // 観光場所数
+// $places = intval(trim(fgets(STDIN)));
 
-// 各観光地の滞在時間
-$stay_time = [];
-for ($i = 0; $i < $places; $i++) {
-  $stay_time[] = intval(trim(fgets(STDIN)));
+// // 各観光地の滞在時間
+// $stay_time = [];
+// for ($i = 0; $i < $places; $i++) {
+//   $stay_time[] = intval(trim(fgets(STDIN)));
+// }
+
+// // 移動時間
+// $travel_time = [];
+// for ($i = 0; $i < $places; $i++) {
+//   $travel_time[] = array_map('intval', explode(' ', trim(fgets(STDIN))));
+// }
+
+// // 訪れたい観光各所
+// $want_visit = intval(trim(fgets(STDIN)));
+
+// $want_visit_numbers = [];
+// for ($i = 0; $i < $want_visit; $i++) {
+//   $want_visit_numbers[] = intval(trim(fgets(STDIN)));
+// }
+
+// $total_time = 0;
+// $current_location = $want_visit_numbers[0]; // 初めての観光名所
+
+// foreach ($want_visit_numbers as $want_visit_number) {
+//     // 移動時間の合計
+//     $total_time += $travel_time[$current_location -1][$want_visit_number -1];
+//     // 滞在時間の合計
+//     $total_time += $stay_time[$want_visit_number -1];
+//     // 現在の場所を更新
+//     $current_location = $want_visit_number;
+// }
+
+// echo $total_time . "\n";
+
+// 練習6
+$input_line = trim(fgets(STDIN));
+list($high, $wide, $wide_change) = explode(" ", $input_line);
+
+$word = [];
+for ($i = 0; $i < $high; $i++) {
+    $input_word = trim(fgets(STDIN));
+
+    // 入力された文字が $wide より上の場合は再入力を求める
+    while (strlen($input_word) > $wide) {
+        echo "入力された文字列は {$wide} 文字以下で入力してください: ";
+        $input_word = trim(fgets(STDIN));
+    }
+
+    $word[] = $input_word;
 }
 
-// 移動時間
-$travel_time = [];
-for ($i = 0; $i < $places; $i++) {
-  $travel_time[] = array_map('intval', explode(' ', trim(fgets(STDIN))));
-}
+// 文字列を繋げて出力
+$combined_text = implode('', $word);
 
-// 訪れたい観光各所
-$want_visit = intval(trim(fgets(STDIN)));
-
-$want_visit_numbers = [];
-for ($i = 0; $i < $want_visit; $i++) {
-  $want_visit_numbers[] = intval(trim(fgets(STDIN)));
-}
-
-$total_time = 0;
-$current_location = $want_visit_numbers[0]; // 初めての観光名所
-
-foreach ($want_visit_numbers as $want_visit_number) {
-    // 移動時間の合計
-    $total_time += $travel_time[$current_location -1][$want_visit_number -1];
-    // 滞在時間の合計
-    $total_time += $stay_time[$want_visit_number -1];
-    // 現在の場所を更新
-    $current_location = $want_visit_number;
-}
-
-echo $total_time . "\n";
+// 指定した文字数ごとに改行して出力
+$wrapped_text = wordwrap($combined_text, $wide_change, "\n", true);
+echo $wrapped_text;
 ?>
