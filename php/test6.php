@@ -1,5 +1,7 @@
 <?php
 // 練習1
+<?php
+// 練習1
 $input_line = trim(fgets(STDIN));
 list($students, $questions) = explode(" ", $input_line);
 
@@ -17,7 +19,7 @@ $score = 100 / $questions;
 foreach ($students_results as $students_result) {
     $total_score = $score * $students_result['correct_answers'];
 
-    if ($students_result['day'] >= 0 && $students_result['day'] < 10) {
+    if ($students_result['day'] > 0 && $students_result['day'] < 10) {
       $total_score = $score * $students_result['correct_answers'] * 0.8;
       $total_score = round($total_score); // 切り捨てて合計得点を計算
     } elseif ($students_result['day'] >= 10) {
@@ -33,5 +35,8 @@ foreach ($students_results as $students_result) {
         echo "D\n";
     }
 }
+
+?>
+
 
 ?>
