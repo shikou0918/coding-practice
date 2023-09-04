@@ -14,7 +14,7 @@ for ($i = 0; $i < $students; $i++) {
         'correct_answers' => $correct_answers
     );
 }
-// print_r($students_data);
+
 $score = 100 / $questions;
 foreach ($students_results as $students_result) {
     $total_score = $score * $students_result['correct_answers'];
