@@ -1,7 +1,5 @@
 <?php
 // 練習1
-<?php
-// 練習1
 $input_line = trim(fgets(STDIN));
 list($students, $questions) = explode(" ", $input_line);
 
@@ -35,8 +33,4 @@ foreach ($students_results as $students_result) {
         echo "D\n";
     }
 }
-
-?>
-
-
 ?>
