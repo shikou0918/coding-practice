@@ -33,4 +33,6 @@ foreach ($students_results as $students_result) {
         echo "D\n";
     }
 }
+
+// 練習2
 ?>
