@@ -169,26 +169,26 @@
 // echo $total_time . "\n";
 
 // 練習6
-$input_line = trim(fgets(STDIN));
-list($high, $wide, $wide_change) = explode(" ", $input_line);
+// $input_line = trim(fgets(STDIN));
+// list($high, $wide, $wide_change) = explode(" ", $input_line);
 
-$word = [];
-for ($i = 0; $i < $high; $i++) {
-    $input_word = trim(fgets(STDIN));
+// $word = [];
+// for ($i = 0; $i < $high; $i++) {
+//     $input_word = trim(fgets(STDIN));
 
-    // 入力された文字が $wide より上の場合は再入力を求める
-    while (strlen($input_word) > $wide) {
-        echo "入力された文字列は {$wide} 文字以下で入力してください: ";
-        $input_word = trim(fgets(STDIN));
-    }
+//     // 入力された文字が $wide より上の場合は再入力を求める
+//     while (strlen($input_word) > $wide) {
+//         echo "入力された文字列は {$wide} 文字以下で入力してください: ";
+//         $input_word = trim(fgets(STDIN));
+//     }
 
-    $word[] = $input_word;
-}
+//     $word[] = $input_word;
+// }
 
-// 文字列を繋げて出力
-$combined_text = implode('', $word);
+// // 文字列を繋げて出力
+// $combined_text = implode('', $word);
 
-// 指定した文字数ごとに改行して出力
-$wrapped_text = wordwrap($combined_text, $wide_change, "\n", true);
-echo $wrapped_text;
+// // 指定した文字数ごとに改行して出力
+// $wrapped_text = wordwrap($combined_text, $wide_change, "\n", true);
+// echo $wrapped_text;
 ?>
