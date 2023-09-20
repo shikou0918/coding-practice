@@ -33,19 +33,21 @@ echo $money_in_possession;
 
 // 練習2
 // 知りたい数と値
-$input_line = fgets(STDIN);
-list($number, $value) = explode(" ", $input_line);
+// $input_line = fgets(STDIN);
+// list($number, $value) = explode(" ", $input_line);
 
-// 数字を2進数に変換
-$binary = decbin($value);
-$binary_array = str_split($binary);
-$binary_array_reverse = array_reverse($binary_array);
+// // 数字を2進数に変換
+// $binary = decbin($value);
+// $binary_array = str_split($binary);
+// $binary_array_reverse = array_reverse($binary_array);
 
-$result = [];
-for ($i = 0; $i < $number; $i++) {
-  $digit = fgets(STDIN);
-  $result[] = $binary_array_reverse[$digit - 1];
-  echo $result[$i] . "\n";
-}
+// $result = [];
+// for ($i = 0; $i < $number; $i++) {
+//   $digit = fgets(STDIN);
+//   $result[] = $binary_array_reverse[$digit - 1];
+//   echo $result[$i] . "\n";
+// }
+
+// 練習3
 
 ?>
