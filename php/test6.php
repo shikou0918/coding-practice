@@ -1,77 +1,102 @@
 <?php
 // 練習1
-$input_line = trim(fgets(STDIN));
-list($students, $questions) = explode(" ", $input_line);
+// // アイテム数
+// $tool = fgets(STDIN);
 
-for ($i = 0; $i < $students; $i++) {
-    $input_line = trim(fgets(STDIN));
-    list($day, $correct_answers) = explode(" ", $input_line);
+// // アイテムの単価
+// $price = fgets(STDIN);
+// $price_array = explode(" ", $price);
 
-    $students_results[] = array(
-        'day' => $day,
-        'correct_answers' => $correct_answers
-    );
-}
+// // 所持金とオーダー回数
+// $input_line = trim(fgets(STDIN));
+// list($money_in_possession, $order) = explode(" ", $input_line);
 
-$score = 100 / $questions;
-foreach ($students_results as $students_result) {
-    $total_score = $score * $students_result['correct_answers'];
+// for ($i = 0; $i < $order; $i++) {
+//     $input_line = trim(fgets(STDIN));
+//     list($tool_number, $tool_count) = explode(" ", $input_line);
 
-    if ($students_result['day'] > 0 && $students_result['day'] < 10) {
-      $total_score = $score * $students_result['correct_answers'] * 0.8;
-      $total_score = round($total_score); // 切り捨てて合計得点を計算
-    } elseif ($students_result['day'] >= 10) {
-      $total_score = 0;
-    }
-    if ($total_score >= 80) {
-        echo "A\n";
-    } elseif ($total_score >= 70) {
-        echo "B\n";
-    } elseif ($total_score >= 60) {
-        echo "C\n";
-    } else {
-        echo "D\n";
-    }
-}
+//     if ($tool_number >= 1 && $tool_number <= $tool) {
+//         // 選択されたアイテムの価格を計算
+//         $total_price = $price_array[$tool_number - 1] * $tool_count;
+
+//         if ($money_in_possession >= $total_price) {
+//             $money_in_possession -= $total_price;
+//         } else {
+//             continue;
+//         }
+//     } else {
+//         echo "存在しないアイテム番号が指定されました。\n";
+//     }
+// }
+
+// echo $money_in_possession;
 
 // 練習2
-$input_line = trim(fgets(STDIN));
-list($train_fare, $one_night, $days) = explode(" ", $input_line);
+// 知りたい数と値
+// $input_line = fgets(STDIN);
+// list($number, $value) = explode(" ", $input_line);
 
-$internship_periods = array(); // インターンシップ期間の配列を初期化
+// // 数字を2進数に変換
+// $binary = decbin($value);
+// $binary_array = str_split($binary);
+// $binary_array_reverse = array_reverse($binary_array);
 
-for ($i = 0; $i < $days; $i++) {
-    $input_line = trim(fgets(STDIN));
-    list($first_day, $last_day) = explode(" ", $input_line);
-    $internship_period = array(
-        'first_day' => $first_day,
-        'last_day' => $last_day
-    );
-    $internship_periods[] = $internship_period; // 期間情報を配列に追加
+// $result = [];
+// for ($i = 0; $i < $number; $i++) {
+//   $digit = fgets(STDIN);
+//   $result[] = $binary_array_reverse[$digit - 1];
+//   echo $result[$i] . "\n";
+// }
+
+// 練習3
+$buy = fgets(STDIN);
+
+// 商品の種類ごとの合計購入金額を格納する連想配列を初期化
+$purchase_amounts = [
+    '食料品' => 0,
+    '書籍' => 0,
+    '衣類' => 0,
+    'その他' => 0,
+];
+
+for ($i = 0; $i < $buy; $i++) {
+    $input_line = fgets(STDIN);
+    list($product_type, $product_price) = explode(" ", $input_line);
+
+    switch ($product_type) {
+        case 0:
+            $purchase_amounts['食料品'] += $product_price;
+            break;
+        case 1:
+            $purchase_amounts['書籍'] += $product_price;
+            break;
+        case 2:
+            $purchase_amounts['衣類'] += $product_price;
+            break;
+        case 3:
+            $purchase_amounts['その他'] += $product_price;
+            break;
+    }
 }
 
-$total_price = $train_fare * 2;
+// 各商品のポイント計算
+$point_criteria = [
+    '食料品' => 5,
+    '書籍' => 3,
+    '衣類' => 2,
+    'その他' => 1,
+];
 
-$result = [];
+$total_points = 0;
 
-for ($i = 0; $i < count($internship_periods) - 1; $i++) {
-    $current_last_day = $internship_periods[$i]['last_day'];
-    $next_first_day = $internship_periods[$i + 1]['first_day'];
-
-    // 今のインターンから次のインターンまでの日数
-    $difference_day = $next_first_day - $current_last_day;
-
-    // 次のインターンまでの宿泊費
-    $total_one_night = $difference_day * $one_night;
-
-    // 一度帰宅した時の往復の交通費
-    $total_train_fare = $train_fare * 2;
-
-    // 比較して低い方を$total_priceに加算
-    $total_price += min($total_one_night, $total_train_fare);
+// 各商品のポイントを計算し、合計ポイントに加算
+foreach ($purchase_amounts as $product_type => $total_amount) {
+    $point_rate = $point_criteria[$product_type];
+    $points = floor($total_amount / 100) * $point_rate; // 100円ごとにポイント計算
+    $total_points += $points;
 }
 
-// 結果を表示
-echo $total_price;
+echo $total_points;
+
 
 ?>
