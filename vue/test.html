@@ -13,13 +13,18 @@
       <p>{{ sayHi() }}</p>
       <p v-text="message"></p>
       <a v-bind:href="url">Google</a>
+      <a v-bind="twitterObject">Twitter</a>
     </div>
     <script>
       new Vue({
         el: '#app',
         data: {
           url: 'https://google.com',
-          message: 'HelloWorld!'
+          message: 'HelloWorld!',
+          twitterObject: {
+            href: 'https://twitter.com',
+            id: 31
+          }
         },
         methods: {
           sayHi: function() {
