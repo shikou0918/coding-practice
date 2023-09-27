@@ -14,6 +14,8 @@
       <p v-text="message"></p>
       <a v-bind:href="url">Google</a>
       <a v-bind="twitterObject">Twitter</a>
+      <p>現在{{ number }}回クリックされています</p>
+      <button v-on:click="countUp">カウントアップ</button>
     </div>
     <script>
       new Vue({
@@ -24,12 +26,16 @@
           twitterObject: {
             href: 'https://twitter.com',
             id: 31
-          }
+          },
+          number: 0
         },
         methods: {
           sayHi: function() {
             this.message = 'Hello VueJS';
             return 'Hi';
+          },
+          countUp: function() {
+            this.number += 1
           }
         }
       })
