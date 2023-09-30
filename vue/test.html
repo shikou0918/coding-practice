@@ -19,6 +19,7 @@
       <p v-on:mousemove="changeMousePosition($event, 3)">マウスを乗せてください
       <span v-on:mousemove.stop>反応しないでください</span></p>
       <p>X:{{x}}, Y:{{y}}</p>
+      <input type="text" v-on:keyup.enter="myAlert">
     </div>
     <script>
       new Vue({
@@ -45,6 +46,9 @@
           changeMousePosition: function(event, divideNumber) {
             this.x = event.clientX / divideNumber;
             this.y = event.clientY / divideNumber;
+          },
+          myAlert() {
+            alert('アラート');
           }
         }
       })
