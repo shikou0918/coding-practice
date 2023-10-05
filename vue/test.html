@@ -9,46 +9,27 @@
     <script src="vue.js"></script>
 
     <div id="app">
-      <p v-once>{{ message }}</p>
-      <p>{{ sayHi() }}</p>
-      <p v-text="message"></p>
-      <a v-bind:href="url">Google</a>
-      <a v-bind="twitterObject">Twitter</a>
-      <p>現在{{ number }}回クリックされています</p>
-      <button @click="countUp">カウントアップ</button>
-      <p v-on:mousemove="changeMousePosition($event, 3)">マウスを乗せてください
-      <span v-on:mousemove.stop>反応しないでください</span></p>
-      <p>X:{{x}}, Y:{{y}}</p>
-      <input type="text" v-on:keyup.enter="myAlert">
+      <p>{{ counter }}</p>
+        <button @click="counter += 1">+1</button>
+        <p>{{ lessThanThree }}</p>
     </div>
     <script>
       new Vue({
         el: '#app',
         data: {
-          url: 'https://google.com',
-          message: 'HelloWorld!',
-          twitterObject: {
-            href: 'https://twitter.com',
-            id: 31
-          },
-          number: 0,
-          x: 0,
-          y: 0
+          counter: 0
         },
-        methods: {
-          sayHi: function() {
-            this.message = 'Hello VueJS';
-            return 'Hi!';
-          },
-          countUp: function() {
-            this.number += 1
-          },
-          changeMousePosition: function(event, divideNumber) {
-            this.x = event.clientX / divideNumber;
-            this.y = event.clientY / divideNumber;
-          },
-          myAlert() {
-            alert('アラート');
+        computed: {
+          lessThanThree: function() {
+            return this.counter > 3 ? '3より上' : '3以下'
+          }
+        },
+        watch : {
+          counter: function() {
+            const vm = this;
+            setTimeout(function(){
+              vm.counter = 0;
+            }, 3000)
           }
         }
       })
