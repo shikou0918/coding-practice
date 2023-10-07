@@ -19,7 +19,10 @@
         <p>おはよう</p>
       </template>
       <ul>
-        <li v-for="fruit in fruits">{{ fruit }}</li>
+        <li v-for="(fruit, index) in fruits">({{ index }}){{ fruit }}</li>
+      </ul>
+      <ul>
+        <li v-for="(value, key,index) in object">({{ index }}){{key}}-{{ value }}</li>
       </ul>
     </div>
     <script>
@@ -32,7 +35,12 @@
             'background-color': 'blue'
           },
           ok: true,
-          fruits: ['りんご', 'バナナ', 'ぶどう']
+          fruits: ['りんご', 'バナナ', 'ぶどう'],
+          object: {
+            firstName: '太郎',
+            lastName: '田中',
+            age: 21
+          }
         },
         computed: {
           classObject: function() {
