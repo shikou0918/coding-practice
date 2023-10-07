@@ -13,7 +13,14 @@
       <h1 :class="classObject">Hello</h1>
       <h1 :style="styleObject">Hello2</h1>
       <button @click="isActive = !isActive">切り替え</button>
-      <p v-if="ok">OK!</p>
+      <template>
+        <p v-if="ok">Hello</p>
+        <p>Good Bye</p>
+        <p>おはよう</p>
+      </template>
+      <ul>
+        <li v-for="fruit in fruits">{{ fruit }}</li>
+      </ul>
     </div>
     <script>
       new Vue({
@@ -25,6 +32,7 @@
             'background-color': 'blue'
           },
           ok: true,
+          fruits: ['りんご', 'バナナ', 'ぶどう']
         },
         computed: {
           classObject: function() {
