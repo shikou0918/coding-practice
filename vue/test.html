@@ -9,46 +9,27 @@
   <body>
     <script src="vue.js"></script>
 
-    <div id="app">
-      <h1 :class="classObject">Hello</h1>
-      <h1 :style="styleObject">Hello2</h1>
-      <button @click="isActive = !isActive">切り替え</button>
-      <template>
-        <p v-if="ok">Hello</p>
-        <p>Good Bye</p>
-        <p>おはよう</p>
-      </template>
-      <ul>
-        <li v-for="(fruit, index) in fruits">({{ index }}){{ fruit }}</li>
-      </ul>
-      <ul>
-        <li v-for="(value, key,index) in object">({{ index }}){{key}}-{{ value }}</li>
-      </ul>
+    <div id="app1">
+      <p>{{ message }}</p>
+    </div>
+
+    <div id="app2">
+      <p>{{ message }}</p>
     </div>
     <script>
-      new Vue({
-        el: '#app',
+      const vm = new Vue({
+        el: '#app1',
         data: {
-          isActive: true,
-          styleObject: {
-            color: 'red',
-            'background-color': 'blue'
-          },
-          ok: true,
-          fruits: ['りんご', 'バナナ', 'ぶどう'],
-          object: {
-            firstName: '太郎',
-            lastName: '田中',
-            age: 21
-          }
-        },
-        computed: {
-          classObject: function() {
-            return {
-              red: this.isActive,
-              'bg-blue': !this.isActive
-            }
-          }
+          message: 'インスタンス1'
+        }
+      })
+
+      vm.message = '書き換えられました'
+
+      new Vue({
+        el: '#app2',
+        data: {
+          message: 'インスタンス2'
         }
       })
     </script>
