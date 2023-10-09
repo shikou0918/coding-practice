@@ -11,16 +11,35 @@
 
     <div id="app">
       <p>{{ message }}</p>
+      <p>{{ name }}</p>
+      <p>{{ myData }}</p>
+    </div>
+
+    <div id="app2">
     </div>
     <script>
+      const data = {
+        message: 'こんにちは',
+        name: 'モフサンド'
+      };
+
       const vm = new Vue({
         el: '#app',
-        data: {
-          message: 'こんにちは',
-          name: 'モフサンド'
+        data: data,
+        computed: {
+          myData: function() {
+            return this.$data;
+          }
         }
-      })
-      console.log(vm.$data)
+      });
+
+      new Vue({
+        data: {
+          name: 'にぎり'
+        },
+        template: '<h1>こんにちは、{{ name }}</h1>'
+      }).$mount('#app2')
+
     </script>
   </body>
 </html>
