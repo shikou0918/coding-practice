@@ -9,33 +9,18 @@
   <body>
     <script src="vue.js"></script>
 
-    <div id="app1">
+    <div id="app">
       <p>{{ message }}</p>
-    </div>
-
-    <div id="app2">
-      <p>{{ message }}</p>
-      <button @click="changeMessage1">インスタンス1のmessageを変更</button>
     </div>
     <script>
-      const vm1 = new Vue({
-        el: '#app1',
+      const vm = new Vue({
+        el: '#app',
         data: {
-          message: 'インスタンス1'
+          message: 'こんにちは',
+          name: 'モフサンド'
         }
       })
-
-      const vm2 = new Vue({
-        el: '#app2',
-        data: {
-          message: 'インスタンス2'
-        },
-        methods: {
-          changeMessage1: function() {
-            vm1.message = 'インスタンス2から変えました'
-          }
-        },
-      })
+      console.log(vm.$data)
     </script>
   </body>
 </html>
