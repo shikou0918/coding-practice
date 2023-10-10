@@ -17,6 +17,11 @@
 
     <div id="app2"></div>
     <div id="app3"></div>
+    <div id="app4">
+      <h1>こんにちは、 {{ name }}</h1>
+      <button @click="name = 'くま太郎'">名前を変更</button>
+      <button @click="destroy">インスタンスを破壊</button>
+    </div>
     <script>
       const data = {
         message: 'こんにちは',
@@ -49,6 +54,42 @@
           return createElement('h1', 'こんにちは、' + this.name);
         },
       }).$mount('#app3');
+
+      new Vue({
+        el: '#app4',
+        data: {
+          name: 'パンダ'
+        },
+        beforeCreate: function() {
+          console.log('beforeCreate')
+        },
+        created: function() {
+          console.log('Created')
+        },
+        beforeMount: function() {
+          console.log('beforeMount')
+        },
+        mounted: function() {
+          console.log('mounted')
+        },
+        beforeUpdate: function() {
+          console.log('beforeUpdate')
+        },
+        updated: function() {
+          console.log('updated')
+        },
+        beforeDestroy: function() {
+          console.log('beforeDestroy')
+        },
+        destroyed: function() {
+          console.log('destroyed')
+        },
+        methods: {
+          destroy: function() {
+            this.$destroy()
+          }
+        }
+      })
     </script>
   </body>
 </html>
