@@ -13,6 +13,8 @@
       <p>{{ message }}</p>
       <p>{{ name }}</p>
       <p>{{ myData }}</p>
+      <hello></hello>
+      <hello></hello>
     </div>
 
     <div id="app2"></div>
@@ -27,6 +29,10 @@
         message: 'こんにちは',
         name: 'モフサンド'
       };
+
+      Vue.component('hello', {
+        template: '<p>こんにちは</p>'
+      });
 
       const vm = new Vue({
         el: '#app',
