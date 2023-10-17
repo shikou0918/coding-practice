@@ -33,4 +33,8 @@ export default {
 div {
   border: 1px solid blue;
 }
+
+h1 {
+  color: red
+}
 </style>
