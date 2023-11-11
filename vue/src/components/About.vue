@@ -1,3 +1,6 @@
 <template>
-  <p>About</p>
+  <div>
+    <p>About</p>
+    <input>
+  </div>
 </template>
